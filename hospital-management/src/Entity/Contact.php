@@ -31,6 +31,12 @@ class Contact
      */
     private $message;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hospital", inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $hospital;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +74,18 @@ class Contact
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getHospital(): ?Hospital
+    {
+        return $this->hospital;
+    }
+
+    public function setHospital(?Hospital $hospital): self
+    {
+        $this->hospital = $hospital;
 
         return $this;
     }
