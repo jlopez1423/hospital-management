@@ -19,29 +19,21 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $adminUserType = new UserType();
-        $adminUserType->setName('admin');
-        $manager->persist($adminUserType);
-
-        $endUserType = new UserType();
-        $endUserType->setName("end_user");
-        $manager->persist($endUserType);
-
 
         $adminUser = new User();
         $adminUser->setEmail("bobafett@email.com");
         $adminUser->setFirstName("Boba");
         $adminUser->setLastName("Fett");
+        $adminUser->setRoles(["ROLES_ADMIN"]);
         $adminUser->setPassword($this->passwordEncoder->encodePassword($adminUser,"fettacheese"));
-        $adminUser->setUserType($adminUserType);
         $manager->persist($adminUser);
 
         $endUser = new User();
         $endUser->setEmail("lukeskywalker@email.com");
         $endUser->setFirstName("Luke");
         $endUser->setLastName("Skywalker");
+        $endUser->setRoles(["ROLES_USER"]);
         $endUser->setPassword($this->passwordEncoder->encodePassword($endUser,"skieswalker"));
-        $endUser->setUserType($adminUserType);
         $manager->persist($endUser);
 
         $manager->flush();

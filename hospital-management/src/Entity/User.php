@@ -33,13 +33,7 @@ class User implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\UserType", inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user_type;
-
-    /**
+     /**
      * @ORM\Column(type="string", length=255)
      */
     private $first_name;
@@ -125,18 +119,6 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getUserType(): ?UserType
-    {
-        return $this->user_type;
-    }
-
-    public function setUserType(?UserType $user_type): self
-    {
-        $this->user_type = $user_type;
-
-        return $this;
     }
 
     public function getFirstName(): ?string
