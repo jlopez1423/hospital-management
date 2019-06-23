@@ -80,4 +80,5 @@ class UserType
 
         return $this;
     }
+
 }
