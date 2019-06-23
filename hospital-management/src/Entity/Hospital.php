@@ -114,4 +114,8 @@ class Hospital
 
         return $this;
     }
+
+    public function __toString() {
+        return $this->name;
+    }
 }
