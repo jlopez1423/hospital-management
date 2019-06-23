@@ -3,10 +3,10 @@
 {% block title %}Hospital index{% endblock %}
 
 {% block body %}
-    <h1>Hospital index</h1>
-
-    <table class="table">
-        <thead>
+    <div class="container container-margin-top">
+        <h1>Hospital index</h1>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -14,26 +14,33 @@
                 <th>Address</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for hospital in hospitals %}
-            <tr>
-                <td>{{ hospital.id }}</td>
-                <td>{{ hospital.name }}</td>
-                <td>{{ hospital.phoneNumber }}</td>
-                <td>{{ hospital.address }}</td>
-                <td>
-                    <a href="{{ path('hospital_show', {'id': hospital.id}) }}">show</a>
-                    <a href="{{ path('hospital_edit', {'id': hospital.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for hospital in hospitals %}
+                <tr>
+                    <td>{{ hospital.id }}</td>
+                    <td>{{ hospital.name }}</td>
+                    <td>{{ hospital.phoneNumber }}</td>
+                    <td>{{ hospital.address }}</td>
+                    <td>
+                        <a href="{{ path('hospital_show', {'id': hospital.id}) }}">show</a>
 
-    <a href="{{ path('hospital_new') }}">Create new</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('hospital_edit', {'id': hospital.id}) }}">edit</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('hospital_new') }}" class="btn btn-primary">Create new</a>
+        {% endif %}
+
+    </div>
 {% endblock %}
