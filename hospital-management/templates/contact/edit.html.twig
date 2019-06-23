@@ -3,11 +3,13 @@
 {% block title %}Edit Contact{% endblock %}
 
 {% block body %}
-    <h1>Edit Contact</h1>
+    <div class="container container-margin-top">
+        <h1>Edit Contact</h1>
 
-    {{ include('contact/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('contact/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('contact_index') }}">back to list</a>
+        <br/><a href="{{ path('contact_index') }}" class="btn btn-secondary">back to list</a>
 
-    {{ include('contact/_delete_form.html.twig') }}
+        {{ include('contact/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

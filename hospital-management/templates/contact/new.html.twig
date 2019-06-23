@@ -3,9 +3,11 @@
 {% block title %}New Contact{% endblock %}
 
 {% block body %}
-    <h1>Create new Contact</h1>
+    <div class="container">
+        <h1>Create new Contact</h1>
 
-    {{ include('contact/_form.html.twig') }}
+        {{ include('contact/_form.html.twig') }}
 
-    <a href="{{ path('contact_index') }}">back to list</a>
+        <br/><a href="{{ path('contact_index') }}" class="btn btn-secondary">back to list</a>
+    </div>
 {% endblock %}

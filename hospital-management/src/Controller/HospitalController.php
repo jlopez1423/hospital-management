@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\Hospital;
+use App\Form\ContactType;
 use App\Form\HospitalType;
 use App\Repository\HospitalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -68,12 +70,25 @@ class HospitalController extends AbstractController
      * @param Hospital $hospital
      * @return Response
      *
-     * @Route("/{id}", name="hospital_show", methods={"GET"})
+     * @Route("/{id}", name="hospital_show", methods={"GET", "POST"})
      */
-    public function show(Hospital $hospital): Response
+    public function show(Request $request, Hospital $hospital): Response
     {
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('contact_index');
+        }
+
         return $this->render('hospital/show.html.twig', [
             'hospital' => $hospital,
+            'form' => $form->createView()
         ]);
     }
 
