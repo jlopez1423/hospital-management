@@ -3,9 +3,11 @@
 {% block title %}New Hospital{% endblock %}
 
 {% block body %}
-    <h1>Create new Hospital</h1>
+    <div class="container container-margin-top">
+        <h1>Create new Hospital</h1>
 
-    {{ include('hospital/_form.html.twig') }}
+        {{ include('hospital/_form.html.twig') }}
 
-    <a href="{{ path('hospital_index') }}">back to list</a>
+        <br/><a href="{{ path('hospital_index') }}" class="btn btn-primary">back to list</a>
+    </div>
 {% endblock %}
