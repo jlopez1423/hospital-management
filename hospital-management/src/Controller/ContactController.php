@@ -25,6 +25,9 @@ class ContactController extends AbstractController
      */
     public function index(ContactRepository $contactRepository): Response
     {
+        // Make sure user is an admin
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+
         return $this->render('contact/index.html.twig', [
             'contacts' => $contactRepository->findAll(),
         ]);

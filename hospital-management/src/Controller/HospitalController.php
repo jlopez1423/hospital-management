@@ -40,6 +40,10 @@ class HospitalController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
+        // Make sure user is an admin
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+
         $hospital = new Hospital();
         $form = $this->createForm(HospitalType::class, $hospital);
         $form->handleRequest($request);
@@ -84,6 +88,9 @@ class HospitalController extends AbstractController
      */
     public function edit(Request $request, Hospital $hospital): Response
     {
+        // Make sure user is an admin
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+
         $form = $this->createForm(HospitalType::class, $hospital);
         $form->handleRequest($request);
 
@@ -112,6 +119,9 @@ class HospitalController extends AbstractController
      */
     public function delete(Request $request, Hospital $hospital): Response
     {
+        // Make sure user is an admin
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+
         if ($this->isCsrfTokenValid('delete'.$hospital->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($hospital);
