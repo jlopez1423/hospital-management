@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
         $adminUser->setEmail("bobafett@email.com");
         $adminUser->setFirstName("Boba");
         $adminUser->setLastName("Fett");
-        $adminUser->setRoles(["ROLES_ADMIN"]);
+        $adminUser->setRoles(["ROLE_ADMIN"]);
         $adminUser->setPassword($this->passwordEncoder->encodePassword($adminUser,"fettacheese"));
         $manager->persist($adminUser);
 
@@ -32,7 +32,7 @@ class AppFixtures extends Fixture
         $endUser->setEmail("lukeskywalker@email.com");
         $endUser->setFirstName("Luke");
         $endUser->setLastName("Skywalker");
-        $endUser->setRoles(["ROLES_USER"]);
+        $endUser->setRoles(["ROLE_USER"]);
         $endUser->setPassword($this->passwordEncoder->encodePassword($endUser,"skieswalker"));
         $manager->persist($endUser);
 
