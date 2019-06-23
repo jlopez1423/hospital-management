@@ -11,7 +11,27 @@
         {% endblock %}
     </head>
     <body>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ path('hospital_index')  }}">Hospitals</a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('contact_index') }}">Contacts</a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("app_logout") }}">Logout</a>
+                </li>
+            {% endif %}
+            {% if not app.user%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("app_login") }}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    {% block javascripts %}{% endblock %}
     </body>
 </html>

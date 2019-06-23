@@ -18,7 +18,7 @@ security:
             anonymous: true
             logout:
                 path: app_logout
-                target: hospital_index
+                target: app_login
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
