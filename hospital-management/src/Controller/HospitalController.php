@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/hospital")
+ * @Route("/user/hospital")
  */
 class HospitalController extends AbstractController
 {
