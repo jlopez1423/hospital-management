@@ -67,14 +67,23 @@ class HospitalController extends AbstractController
     /**
      * Display single hospital
      *
+     * @param Request $request
      * @param Hospital $hospital
      * @return Response
      *
      * @Route("/{id}", name="hospital_show", methods={"GET", "POST"})
      */
-    public function show(Request $request, Hospital $hospital): Response
+    public function show(Request $request, Hospital $hospital, $id): Response
     {
+       // grab hospital object
+        /** @var Hospital $hospital */
+        $hospital  = $this->getDoctrine()->getRepository(Hospital::class)->findOneBy([
+            'id' => $id
+        ]);
+
+        // display the contact form in hospital
         $contact = new Contact();
+        $contact->setHospital($hospital);
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 

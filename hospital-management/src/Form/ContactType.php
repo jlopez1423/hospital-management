@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,7 +23,10 @@ class ContactType extends AbstractType
             ->add('subject')
             ->add('email')
             ->add('message')
-            ->add('hospital')
+            ->add('hospital', ChoiceType::class, [
+                'label' => 'Hospital Name',
+                'choices' => [$builder->getData()->getHospital()->getName() => $builder->getData()->getHospital()]
+            ])
         ;
     }
 
