@@ -22,7 +22,7 @@ class ContactType extends AbstractType
         $builder
             ->add('subject')
             ->add('email')
-            ->add('message')
+            ->add('message', TextType::class)
             ->add('hospital', ChoiceType::class, [
                 'label' => 'Hospital Name',
                 'choices' => [$builder->getData()->getHospital()->getName() => $builder->getData()->getHospital()]
